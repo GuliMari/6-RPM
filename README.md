@@ -59,7 +59,24 @@ total 4584
 -rw-rw-r--. 1 tw4 tw4 2528704 Nov 25 20:52 nginx-debuginfo-1.14.1-1.el7_4.ngx.x86_64.rpm
 ```
 
+Проверим, работает ли наш пакет:
 
+```bash
+[tw4@tw4 ~]$ sudo yum localinstall -y rpmbuild/RPMS/x86_64/nginx-1.14.1-1.el7_4.ngx.x86_64.rpm 
+...
+Installed:
+  nginx.x86_64 1:1.14.1-1.el7_4.ngx                                                    
+
+Complete!
+[tw4@tw4 ~]$ systemctl start nginx
+[tw4@tw4 ~]$ systemctl status nginx
+● nginx.service - nginx - high performance web server
+   Loaded: loaded (/usr/lib/systemd/system/nginx.service; disabled; vendor preset: disabled)
+   Active: active (running) since Fri 2022-11-25 20:57:17 MSK; 10s ago
+     Docs: http://nginx.org/en/docs/
+  Process: 11873 ExecStart=/usr/sbin/nginx -c /etc/nginx/nginx.conf (code=exited, status=0/SUCCESS)
+
+```
 
 ## 2. создать свой репо и разместить там свой RPM
 ## 3. реализовать это все либо в вагранте, либо развернуть у себя через nginx и дать ссылку на репо
