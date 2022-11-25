@@ -79,5 +79,23 @@ Complete!
 ```
 
 ## 2. создать свой репо и разместить там свой RPM
+
+Cоздадим директорию для репозитория и скопируем туда rpm:
+
+```bash
+[tw4@tw4 ~]$ sudo mkdir /usr/share/nginx/html/repo
+[tw4@tw4 ~]$ sudo cp rpmbuild/RPMS/x86_64/nginx-1.14.1-1.el7_4.ngx.x86_64.rpm /usr/share/nginx/html/repo/
+[tw4@tw4 ~]$ sudo wget https://downloads.percona.com/downloads/percona-release/percona-release-1.0-9/redhat/percona-release-1.0-9.noarch.rpm -O /usr/share/nginx/html/percona-release-1.0-9.noarch.rpm 
+[tw4@tw4 ~]$ sudo createrepo /usr/share/nginx/html/repo/
+Spawning worker 0 with 1 pkgs
+Spawning worker 1 with 0 pkgs
+Workers Finished
+Saving Primary metadata
+Saving file lists metadata
+Saving other metadata
+Generating sqlite DBs
+Sqlite DBs complete
+```
+
 ## 3. реализовать это все либо в вагранте, либо развернуть у себя через nginx и дать ссылку на репо
 
