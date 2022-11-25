@@ -103,3 +103,52 @@ Sqlite DBs completeыув
 
 ## 3. реализовать это все либо в вагранте, либо развернуть у себя через nginx и дать ссылку на репо
 
+Настроим nginx:
+
+```bash
+[tw4@tw4 ~]$ sudo sed -i 's@        index  index.html index.htm;@        index  index.html index.htm;\n        autoindex on;@' /etc/nginx/conf.d/default.conf
+[tw4@tw4 ~]$ sudo nginx -t
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+[tw4@tw4 ~]$ sudo nginx -s reload
+```
+
+Проверим содержимое репозитория:
+
+```bash
+[tw4@tw4 ~]$ curl -a http://localhost/repo/
+<html>
+<head><title>Index of /repo/</title></head>
+<body>
+<h1>Index of /repo/</h1><hr><pre><a href="../">../</a>
+<a href="repodata/">repodata/</a>                                          25-Nov-2022 19:49                   -
+<a href="nginx-1.22.1-1.el7.ngx.x86_64.rpm">nginx-1.22.1-1.el7.ngx.x86_64.rpm</a>                  25-Nov-2022 18:54             2208404
+<a href="percona-release-1.0-9.noarch.rpm">percona-release-1.0-9.noarch.rpm</a>                   11-Nov-2020 21:49               16664
+</pre><hr></body>
+</html>
+```
+Теперь добавим наш репозиторий в списки репозиториев yum:
+
+```bash
+[root@tw4 tw4]# cat >> /etc/yum.repos.d/otus.repo << EOF
+> otus]
+> name=otus-linux
+> baseurl=http://localhost/repo
+> gpgcheck=0
+> enabled=1
+> EOF
+[root@tw4 tw4]# yum repolist enabled | grep otus
+otus                                otus-linux   
+```
+
+Проверим наш репозиторий, попробовав установить из него percona:
+
+```bash
+[root@tw4 tw4]# yum install percona-release -y
+...
+Installed:
+  percona-release.noarch 0:1.0-9                                                       
+
+Complete!
+```
+Все получилось, репозиторий работает.
