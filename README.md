@@ -52,8 +52,12 @@ sed -i 's@--with-ld-opt="%{WITH_LD_OPT}" @--with-ld-opt="%{WITH_LD_OPT}" \\\n   
 Собираем пакет:
 
 ```bash
-rpmbuild -bb rpmbuild/SPECS/nginx.spec
-
+[tw4@tw4 ~]$ rpmbuild -bb rpmbuild/SPECS/nginx.spec
+[tw4@tw4 ~]$ ll rpmbuild/RPMS/x86_64/
+total 4584
+-rw-rw-r--. 1 tw4 tw4 2160996 Nov 25 20:52 nginx-1.14.1-1.el7_4.ngx.x86_64.rpm
+-rw-rw-r--. 1 tw4 tw4 2528704 Nov 25 20:52 nginx-debuginfo-1.14.1-1.el7_4.ngx.x86_64.rpm
+```
 
 
 
