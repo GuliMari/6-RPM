@@ -131,7 +131,7 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 
 ```bash
 [root@tw4 tw4]# cat >> /etc/yum.repos.d/otus.repo << EOF
-> otus]
+> [otus]
 > name=otus-linux
 > baseurl=http://localhost/repo
 > gpgcheck=0
