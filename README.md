@@ -11,7 +11,7 @@
 Устанавливаем необходимые пакеты дял успешного выполнения задания:
 
 ```bash
-[tw4@tw4 ~]$ sudo yum install -y redhat-lsb-core wget rpmdevtools rpm-build createrepo yum-utils
+[tw4@tw4 ~]$ sudo yum install -y redhat-lsb-core wget rpmdevtools rpm-build createrepo yum-utils gcc
 ```
 
 Cкачиваем source пакет nginx и устанавливаем его в домашней директории:
